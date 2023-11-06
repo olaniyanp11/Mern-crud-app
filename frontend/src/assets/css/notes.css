@@ -1,0 +1,14 @@
+#title{
+    padding:6px
+}
+.addNote{
+    padding:15px;
+    width:200px;
+    border:none;
+    background-color: dodgerblue;
+    color:white;
+    font-size: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
