@@ -10,7 +10,6 @@ const noteStore = create((set) => ({
     getnote: { title: "", body: "" },
     fetchNotes: async () => {
         try {
-            console.log("here")
             const response = await axios.get(url);
             set({ notes: response.data.notes, loading: false });
             // Set loading to false when data is fetched

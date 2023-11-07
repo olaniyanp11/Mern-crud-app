@@ -2,11 +2,12 @@ import React from 'react'
 import '../assets/css/login.css'
 import axios from 'axios';
 import { useState } from 'react';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-export const Login = () => {
+export const Login = ({ sessionstore }) => {
     const [formValue, setFormValue] = useState({ email: "", password: "" });
     const navigate = useNavigate()
+
 
     async function processForm(e) {
         e.preventDefault({ email: "", password: "" });
@@ -17,6 +18,7 @@ export const Login = () => {
 
             setFormValue({ email: "", password: "" })
             const response = await axios.post("http://localhost:3001/login/", { email: email, password: password })
+            sessionstore.setLoggedIn(true);
             navigate('/')
             console.log(response.data.message)
         } catch (error) {

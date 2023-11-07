@@ -12,7 +12,7 @@ async function requireAuth(req, res, next) {
 
     // get the user
     const user = await User.findById(decoded.sub);
-    if (!user) sendStatus(401);
+    if (!user) res.redirect(401, "http://localhost:3001/Logout/");
 
     req.user = user
     // continue to the requested route
