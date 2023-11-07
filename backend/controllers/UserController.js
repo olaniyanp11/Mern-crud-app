@@ -23,11 +23,11 @@ async function login(req, res) {
     if (!user) {
       return res.sendStatus(401);
     }
-    console.log("logging in");
     // conpare the password
     const check = bcrypt.compareSync(password, user.password);
     if (!check) return res.sendStatus(401);
     // create token
+    console.log("logging in");
     const exp = Date.now() + 1000 * 60 * 60 * 24 * 30;
     const token = jwt.sign({ sub: user._id, exp }, process.env.SECRET);
     res.cookie("Authorization", token, {
@@ -46,6 +46,7 @@ function logout(req, res) {
   return res.sendStatus(200)
 }
 function checkAuth(req, res) {
+  console.log(req.user)
   res.sendStatus(200);
 }
 

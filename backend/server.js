@@ -13,7 +13,7 @@ const CookieParser = require("cookie-parser");
 connectToDb();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 app.use(CookieParser());
 
 // route to create new user
@@ -23,10 +23,8 @@ app.get("/logout", Usercontroller.logout);
 app.get("/check-auth", requireAuth, Usercontroller.checkAuth);
 app.get("/", requireAuth, async (req, res) => {
   // get all the notes
-  console.log(req.body)
   const notes = await Note.find();
   // return the json format for gotten notes
-  console.log(notes)
   res.json({ notes: notes });
 });
 app.post("/notes", requireAuth, async (req, res) => {

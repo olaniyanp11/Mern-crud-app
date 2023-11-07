@@ -5,7 +5,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import '../assets/css/notes.css'
 
-
 async function Deletenote(noteId) {
   const res = await axios.delete(`http://localhost:3001/notes/${noteId}`)
   return (res)
